@@ -1,11 +1,11 @@
-import { getIntlayer, validatePrefix } from 'intlayer';
-import { useIntlayer } from 'react-intlayer';
-import { data } from 'react-router';
+import { getIntlayer, validatePrefix } from "intlayer";
+import { useIntlayer } from "react-intlayer";
+import { data } from "react-router";
 
-import { LocaleSwitcher } from '~/components/locale-switcher';
+import { LocaleSwitcher } from "~/components/locale-switcher";
+import { Navbar } from "~/components/navbar";
 
-import { Navbar } from '~/components/navbar';
-import type { Route } from './+types/page';
+import type { Route } from "./+types/page";
 
 export const loader = ({ params }: Route.LoaderArgs) => {
   const { locale } = params;
@@ -13,21 +13,21 @@ export const loader = ({ params }: Route.LoaderArgs) => {
   const { isValid } = validatePrefix(locale);
 
   if (!isValid) {
-    throw data('Locale not supported', { status: 404 });
+    throw data("Locale not supported", { status: 404 });
   }
 };
 
 export const meta: Route.MetaFunction = ({ params }) => {
-  const content = getIntlayer('page-meta', params.locale);
+  const content = getIntlayer("page-meta", params.locale);
 
   return [
     { title: content.title },
-    { content: content.description, name: 'description' },
+    { content: content.description, name: "description" },
   ];
 };
 
 export default function Page() {
-  const { greeting } = useIntlayer('page');
+  const { greeting } = useIntlayer("page");
 
   return (
     <div className="grid h-screen place-items-center">

@@ -1,9 +1,11 @@
-import { useIntlayer } from 'react-intlayer';
-import { useLocalizedNavigate } from '~/hooks/useLocalizedNavigate';
-import { LocalizedLink } from './localized-link';
+import { useIntlayer } from "react-intlayer";
+
+import { useLocalizedNavigate } from "~/hooks/useLocalizedNavigate";
+
+import { LocalizedLink } from "./localized-link";
 
 export const Navbar = () => {
-  const { home, about } = useIntlayer('navbar');
+  const { about, home } = useIntlayer("navbar");
   const navigate = useLocalizedNavigate();
 
   return (
@@ -13,8 +15,8 @@ export const Navbar = () => {
         <LocalizedLink to="/about">{about}</LocalizedLink>
       </div>
       <div className="flex gap-2">
-        <button onClick={() => navigate('/')}>{home} (navigate)</button>
-        <button onClick={() => navigate('/about')}>{about} (navigate)</button>
+        <button onClick={() => navigate("/")}>{home} (navigate)</button>
+        <button onClick={() => navigate("/about")}>{about} (navigate)</button>
       </div>
     </nav>
   );

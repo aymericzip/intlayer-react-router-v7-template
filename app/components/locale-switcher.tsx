@@ -1,15 +1,16 @@
+import type { FC } from "react";
+
 import {
   getHTMLTextDir,
   getLocaleName,
   getLocalizedUrl,
   getPathWithoutLocale,
-} from 'intlayer';
-import type { FC } from 'react';
-import { useIntlayer, useLocale } from 'react-intlayer';
-import { Link, useLocation } from 'react-router';
+} from "intlayer";
+import { useIntlayer, useLocale } from "react-intlayer";
+import { Link, useLocation } from "react-router";
 
 export const LocaleSwitcher: FC = () => {
-  const { localeSwitcherLabel } = useIntlayer('locale-switcher');
+  const { localeSwitcherLabel } = useIntlayer("locale-switcher");
   const { pathname } = useLocation();
 
   const { availableLocales, locale, setLocale } = useLocale();
@@ -21,7 +22,7 @@ export const LocaleSwitcher: FC = () => {
       {availableLocales.map((localeEl) => (
         <li className="py-1 pr-1.5" key={localeEl}>
           <Link
-            aria-current={localeEl === locale ? 'page' : undefined}
+            aria-current={localeEl === locale ? "page" : undefined}
             aria-label={`${localeSwitcherLabel.value} ${getLocaleName(localeEl)}`}
             onClick={() => setLocale(localeEl)}
             to={getLocalizedUrl(pathWithoutLocale, localeEl)}
